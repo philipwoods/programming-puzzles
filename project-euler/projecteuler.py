@@ -1,6 +1,11 @@
 # File: projecteuler.py
 # Contains the functions that I used to solve each problem in Project Euler.
 
+# Problems solved:   1   2   3   4   5   6   7   8   9  10
+#                   11  12  13  14  15  16  17      19  20
+#                                   25
+#                               34
+
 import math
 import array
 import datetime
@@ -333,7 +338,7 @@ def sumDigits(numDigits):
     Returns the first numDigits digits of the sum of the numbers found in the
     file p13.txt.
     """
-    f = open("C:\Users\Philip\Documents\Miscellaneous\Project Euler\p13.txt")
+    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p13.txt")
     numbers = f.readlines()
     sigDigits = []
     for number in numbers:
@@ -463,7 +468,7 @@ def rangeCount(maxValue):
 
 def greatProduct():
     # Format the array properly
-    f = open("C:\Users\Philip\Documents\Miscellaneous\Project Euler\p11.txt")
+    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p11.txt")
     lines = f.readlines()
     arr = []
     for line in lines:
@@ -602,3 +607,40 @@ def findFactorions():
             factorions.append(n)
         n += 1
     return factorions
+
+
+# PROBLEM 18
+
+# Probably try a memoized recursive method starting from the bottom.
+
+def loadTriangle():
+    # Load triangle from file
+    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p18-test.txt")
+    lines = f.readlines()
+    arr = []
+    for line in lines:
+        arr.append(map(int, line.split()))
+    # Start calculations
+    
+    
+
+def findMaxPath(triangle, r, c):
+    if c < 0 or c >= len(arr[r]):
+        return 0
+    if r == 0:
+        return triangle[r][0]
+    else:
+        left = findMaxPath(triangle,r-1,c-1)
+        right = findMaxPath(triangle,r-1,c)
+        return triangle[r][c] + max(left,right)
+
+
+
+
+
+
+
+
+
+
+
