@@ -5,6 +5,9 @@
 #                   11  12  13  14  15  16  17  18  19  20
 #                                   25
 #                               34
+#                   
+#                   
+#                                           67
 
 import math
 import array
@@ -609,13 +612,13 @@ def findFactorions():
     return factorions
 
 
-# PROBLEM 18
+# PROBLEM 18 / 67
 
 # Probably try a memoized recursive method starting from the bottom.
 
 def loadTriangle():
     # Load triangle from file
-    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p18.txt")
+    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p067_triangle.txt")
     lines = f.readlines()
     triArr = []
     memoArr = []
