@@ -624,7 +624,7 @@ def loadTriangle():
         triArr.append(proc_line)
         memoArr.append([0]*len(proc_line))
     best = 0
-    for n in triArr[-1]:
+    for n in range(len(triArr[-1])):
         result = findMaxPath(triArr, len(triArr)-1, n, memoArr)
         if result > best:
             best = result
@@ -639,8 +639,8 @@ def findMaxPath(triangle, r, c, memo):
     if memo[r][c] > 0:
         return memo[r][c]
     else:
-        left = findMaxPath(triangle,r-1,c-1)
-        right = findMaxPath(triangle,r-1,c)
+        left = findMaxPath(triangle,r-1,c-1,memo)
+        right = findMaxPath(triangle,r-1,c,memo)
         result = triangle[r][c] + max(left,right)
         memo[r][c] = result
         return result
