@@ -617,22 +617,33 @@ def loadTriangle():
     # Load triangle from file
     f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p18-test.txt")
     lines = f.readlines()
-    arr = []
+    triArr = []
+    memoArr = []
     for line in lines:
-        arr.append(map(int, line.split()))
-    # Start calculations
-    
-    
+        proc_line = map(int, line.split())
+        triArr.append(proc_line)
+        memoArr.append([0]*len(proc_line))
+    best = 0
+    for n in triArr[-1]:
+        result = findMaxPath(triArr, len(triArr)-1, n, memoArr)
+        if result > best:
+            best = result
+    return best
 
-def findMaxPath(triangle, r, c):
-    if c < 0 or c >= len(arr[r]):
-        return 0
+def findMaxPath(triangle, r, c, memo):
+    if c < 0 or c >= len(triangle[r]):
+        return -1
     if r == 0:
+        memo[r][0] = triangle[r][0]
         return triangle[r][0]
+    if memo[r][c] > 0:
+        return memo[r][c]
     else:
         left = findMaxPath(triangle,r-1,c-1)
         right = findMaxPath(triangle,r-1,c)
-        return triangle[r][c] + max(left,right)
+        result = triangle[r][c] + max(left,right)
+        memo[r][c] = result
+        return result
 
 
 
