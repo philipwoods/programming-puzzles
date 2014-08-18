@@ -615,7 +615,7 @@ def findFactorions():
 
 def loadTriangle():
     # Load triangle from file
-    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p18-test.txt")
+    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p18.txt")
     lines = f.readlines()
     triArr = []
     memoArr = []
