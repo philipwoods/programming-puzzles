@@ -684,7 +684,24 @@ def amicable(maximum):
 
 # PROBLEM 22
 
-
+def nameScores():
+    # Import the name data
+    f = open(filepath_base + "p022_names.txt")
+    names = f.readline().strip('"').split('","')
+    names.sort()
+    # Set up letter scores
+    letters = {}
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    for letter in alphabet:
+        letters[letter] = alphabet.index(letter)+1
+    # Calculate name scores
+    totalScore = 0
+    for name in names:
+        nameScore = 0
+        for letter in name:
+            nameScore += letters[letter]
+        totalScore += nameScore*(names.index(name)+1)
+    return totalScore
 
 
 
