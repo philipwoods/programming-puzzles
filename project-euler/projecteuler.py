@@ -380,19 +380,32 @@ def fibonacci(n, numbers={}):
 
 # PROBLEM 12
 
-def getNumDivisors(n):
+def divisor(n,x):
     """
-    Returns the number of divisors of n.
+    Returns sigma_x(n).
     """
     if n == 1:
         return 1
-    pf1 = primeFactors2(n)
+    pf1 = primeFactors2(n) # Get a list of the prime factors of n
     pf2 = []
-    for n in pf1:
-        count = pf1.count(n)
-        pf2.append((n,count))
+    # Reformat list from [1, 2, 2, 2, 3, 3, 5] to [(1,1),(2,3),(3,2),(5,1)]
+    # Assumes pf1 is sorted.
+    for p in pf1:
+        count = pf1.count(p)
+        pf2.append((p,count))
         del pf1[0:count - 1]
-    return reduce(lambda x,y: x*y, map(lambda x: x[1]+1, pf2))
+        
+    # sigma_x(n) = Prod( Sum( p_i^(j*x), j=0, a_i ), i=1, r )
+    # r = number of distinct prime factors of n
+    # p_i = ith prime factor
+    # a_i = max power of p_i by which n is divisible
+    totalProd = 1
+    for i in range(len(pf2)):
+        powerSum = 0
+        for j in range(pf2[i][1]+1):
+            powerSum += pf2[i][0]**(j*x)
+        totalProd *= powerSum
+    return totalProd
 
 def triangleNum(n):
     """
@@ -405,7 +418,7 @@ def triangleDiv(numDiv):
     Returns the first triangle number with more than numDiv divisors.
     """
     i = 1
-    while getNumDivisors(triangleNum(i)) <= 500:
+    while divisor(triangleNum(i),0) <= 500:
         i += 1
     return triangleNum(i)
 
@@ -647,6 +660,8 @@ def findMaxPath(triangle, r, c, memo):
         result = triangle[r][c] + max(left,right)
         memo[r][c] = result
         return result
+
+# PROBLEM 21
 
 
 
