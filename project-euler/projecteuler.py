@@ -80,7 +80,7 @@ def primeFactors2( inp ):
     # have been removed already (factors must be smaller than the composite) so
     # the check inp % i will never succeed for them.
     i = 3
-    while i**2 < inp:
+    while i**2 <= inp:
         while not inp % i:
             factors.append(i)
             inp /= i
