@@ -663,7 +663,22 @@ def findMaxPath(triangle, r, c, memo):
 
 # PROBLEM 21
 
-
+def amicable(maximum):
+    """
+    Returns the sum of all amicable numbers less than maximum.
+    """
+    memo = {}
+    total = 0
+    for n in range(1,maximum):
+        d = divisor(n,1) - n
+        if d >= maximum or d == n:
+            continue
+        memo[n] = d
+        if d in memo and memo[d] == n:
+            print "("+str(d)+","+str(n)+")"
+            total += d
+            total += n
+    return total
 
 
 
