@@ -13,6 +13,8 @@ import math
 import array
 import datetime
 
+filepath_base = "C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\"
+
 # PROBLEM 1
 
 def multiples35( maxi ):
@@ -341,7 +343,7 @@ def sumDigits(numDigits):
     Returns the first numDigits digits of the sum of the numbers found in the
     file p13.txt.
     """
-    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p13.txt")
+    f = open(filepath_base + "p13.txt")
     numbers = f.readlines()
     sigDigits = []
     for number in numbers:
@@ -484,7 +486,7 @@ def rangeCount(maxValue):
 
 def greatProduct():
     # Format the array properly
-    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p11.txt")
+    f = open(filepath_base + "p11.txt")
     lines = f.readlines()
     arr = []
     for line in lines:
@@ -631,7 +633,7 @@ def findFactorions():
 
 def loadTriangle():
     # Load triangle from file
-    f = open("C:\Users\Philip\Dropbox\git_projects\programming-puzzles\project-euler\p067_triangle.txt")
+    f = open(filepath_base + "p067_triangle.txt")
     lines = f.readlines()
     triArr = []
     memoArr = []
