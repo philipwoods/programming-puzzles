@@ -3,7 +3,7 @@
 
 # Problems solved:   1   2   3   4   5   6   7   8   9  10
 #                   11  12  13  14  15  16  17  18  19  20
-#                   21  22          25
+#                   21  22      24  25
 #                               34
 #                                               48
 #                   
@@ -717,7 +717,56 @@ def lastDigits(maximum, numDigits):
         digitSum += lastDigits
     return digitSum % 10**numDigits
 
+# PROBLEM 24
 
+def nCr(n,r):
+    """
+    Returns the number of combinations of r objects from a set of n objects.
+    """
+    if r > n:
+        return 0
+    return factorial(n) / (factorial(r) * factorial(n - r))
 
+def nPr(n,r):
+    """
+    Returns the number of permutations of r objects from a set of n objects.
+    """
+    if r > n:
+        return 0
+    return factorial(n) / factorial(n - r)
+
+"""
+We have a set of strings 10 characters long, made by arranging the digits 0-9
+without repetition.  This means that there are nPr(10,10) = 3,628,800 strings
+in the set.  There are nPr(9,9) = 362,880 strings which start with 0, nPr(9,9)
+strings which start with 1, etc.  Therefore the lexicographic permutations are
+split up so that #1 - #362880 start with 0, #362881 - #725760 start with 1, and
+#725761 - #1088640 start with 2.  This means the millionth one starts with 2.
+
+There are nPr(8,8) = 40320 strings for with two characters fixed.  We can use
+this to determine that #725761 - #776080 start with 20, #776081 - #806400 start
+with 21, #806401 - #846720 start with 23, #846721 - #887040 start with 24,
+#887041 - #927360 start with 25, #927361 - #967680 start with 26, and #967681 -
+#1008000 start with 27.
+
+We can use this same method to refine down the number place by place.
+"""
+
+def lexicographic(i, chars):
+    """
+    Returns the ith lexicographic permutation of the input set.  Assumes chars
+    is sorted with no repetition.
+    """
+    if i == 0:
+        return
+    n = len(chars)
+    out = [0]*n
+    position = 1
+    for j in range(n):
+        chars_index = (i - position) / nPr(n-1-j, n-1-j)
+        out[j] = chars[chars_index]
+        del chars[chars_index]
+        position += nPr(n-1-j, n-1-j) * chars_index   
+    return "".join(map(str, out))
 
 
