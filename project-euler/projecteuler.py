@@ -769,4 +769,39 @@ def lexicographic(i, chars):
         position += nPr(n-1-j, n-1-j) * chars_index   
     return "".join(map(str, out))
 
+# PROBLEM 23
 
+def isAbundant(n):
+    """
+    Returns TRUE if a number is abundant, FALSE otherwise.
+    """
+    return (n < divisor(n, 1) - n)
+
+def findAbundant(n):
+    """
+    Returns a list of all abundant numbers less than n.
+    """
+    abundant = []
+    for i in range(1, n):
+        if isAbundant(i):
+            abundant.append(i)
+    return abundant
+    
+def p23(n):
+    abundant = findAbundant(n)
+    numbers = {x:1 for x in range(1, n)}
+    for a in abundant:
+        for b in abundant:
+            if (a + b) in numbers:
+                del numbers[a + b]
+    return sum(numbers.keys())
+        
+
+    
+
+
+
+
+
+
+        
